@@ -7,12 +7,14 @@ import {
     createEventCategory, 
     createEventService, 
     createEventSubService, 
+    createState, 
     getAllCities, 
     getAllCountries, 
     getAllEventCategory, 
     getAllEventService, 
     getAllEventSubService,
     getAllStates,
+    getCreatedState,
     getEventServiceData
 } from "../controllers/master.js";
 
@@ -56,6 +58,19 @@ router.post("/master/add/eventsubservice", isUserAuthenticated, isAdmin, async (
         }
         const addedData = await getEventServiceData(newEventSubService._id)
         return res.status(201).json({message:"CreatedSuccessfully", data: addedData})
+    } catch (error) {
+        return servererror(error, res);
+    }
+});
+
+router.post("/master/add/state", isUserAuthenticated, isAdmin, async (req, res) => {
+    try {
+        const newState = await createState(req);
+        if(!newState) {
+            return res.status(400).json({error: "Error Creation"});
+        }
+        const addedData = await getCreatedState(newState._id)
+        return res.status(201).json({message:"CreatedStateSuccessfully", data: addedData})
     } catch (error) {
         return servererror(error, res);
     }

@@ -26,6 +26,21 @@ function createEventSubService(req) {
     }).save()
 };
 
+// Add New State
+function createState(req) {
+    return new STATE({
+        ...req.body
+    }).save()
+};
+
+// Get Created State
+function getCreatedState(id) {
+    return STATE.findById(id)
+    .populate({ 
+        path: "countryId"
+    })
+};
+
 // Get New Added SubService populated Data
 function getEventServiceData(id) {
     return EVENTSUBSERVICE.findOne({_id: id}).populate({
@@ -81,6 +96,8 @@ export {
     createEventCategory,
     createEventService,
     createEventSubService,
+    createState,
+    getCreatedState,
     getEventServiceData,
     getAllEventCategory,
     getAllEventService,
