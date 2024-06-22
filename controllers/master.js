@@ -68,10 +68,10 @@ function getAllCities() {
 
 // Only 1st Time DB Creation for All Option
 function createCity(statedata) {
-    console.log(statedata)
+    // console.log(statedata._id)
     return new CITY({
-        cityName: "All",
-        stateId: statedata.stateId._id
+        cityName: "All Cities",
+        stateId: statedata._id
     }).save()
 };
 
