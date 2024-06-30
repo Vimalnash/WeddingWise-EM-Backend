@@ -7,6 +7,9 @@
     User APIs
         -> /api/user/signup
         -> /api/user/login
+        -> /api/user/resetpassword
+        -> /api/user/resetpasswordlink
+        -> /api/user/resetpassword/setnewpassword
 
         <!-- Vendor Details and Adding and Removing Favourites -->
         -> /api/user/master/get/vendors
