@@ -24,6 +24,29 @@ function createUser(req, hashPass) {
     ).save()
 };
 
+// Getting User Data by Reset Password hash
+function getUserByResetPass(urlquery) {
+    return USER.findOne(
+        {passwordReset: urlquery}
+    )
+};
+
+// Update New Password using reset password link
+function updatePass(urlquery, hassPass) {
+    return USER.updateOne(
+        {passwordReset: urlquery},
+        {password: hassPass, passwordReset: ""}
+    )
+};
+
+// Reset Password String adding
+function addResetPassHash(id, resetHash) {
+    return USER.updateOne(
+        {_id: id},
+        {passwordReset: resetHash}
+    )
+};  
+
 // Getting User by Id
 function getUserById(id) {
     return USER.findById(id)
@@ -268,6 +291,9 @@ function getAllUserPreferences(req){
 export { 
     getUserByEmail, 
     createUser, 
+    getUserByResetPass,
+    updatePass,
+    addResetPassHash,
     addMyFavouriteVendor, 
     getAddedFavouriteData,
     getMyFavouriteVendor, 
